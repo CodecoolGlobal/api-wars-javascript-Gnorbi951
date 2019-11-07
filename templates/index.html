@@ -1,5 +1,31 @@
 {% extends 'layout.html' %}
 {% block content %}
-    some text
+    <h1 id="header">Star Wars Universe Planets</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Diameter</th>
+                <th>Climate</th>
+                <th>Terrain</th>
+                <th>Surface Water Percentage</th>
+                <th>Population</th>
+                <th>residents</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for _ in range(0,10) %}
+                <tr>
+                    <td>Sample_planet</td>
+                    <td>sample km</td>
+                    <td>sample climate</td>
+                    <td>sample terrain</td>
+                    <td>sample water%</td>
+                    <td>sample population</td>
+                    <td>sample resident</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

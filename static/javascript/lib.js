@@ -13,24 +13,8 @@ export default function loadTable (planets) {
          }
          counter = 0;
          for (let sDiameter of diameterSelector) {
-                 let formattedOutput = '';
-                 let indexCounter = 0;
                  let currentDiameter = planets.results[counter].diameter;
-                 currentDiameter = currentDiameter.split("").reverse().join("");
-                 for (let number of currentDiameter) {
-                     if (indexCounter % 3 === 0) {
-                         formattedOutput += ',';
-                         formattedOutput += number;
-                     } else {
-                         formattedOutput += number;
-                     }
-                     indexCounter++;
-                 }
-                 formattedOutput = formattedOutput.split("").reverse().join("");
-                 let commaLastIndex = formattedOutput.lastIndexOf(',');
-                 formattedOutput = formattedOutput.slice(0, commaLastIndex);
-                 formattedOutput += ' km';
-                 sDiameter.innerHTML = formattedOutput;
+                 addComma(currentDiameter, sDiameter, 'km');
              counter++;
          }
          counter = 0;
@@ -59,23 +43,7 @@ export default function loadTable (planets) {
              if (currentPopulation === 'unknown') {
                  sPopulation.innerHTML = currentPopulation;
              } else {
-                 let formattedOutput = '';
-                 let popCounter = 0;
-                 currentPopulation = currentPopulation.split("").reverse().join("");
-                 for (let number of currentPopulation) {
-                     if (popCounter % 3 === 0) {
-                         formattedOutput += ',';
-                         formattedOutput += number;
-                     } else {
-                         formattedOutput += number;
-                     }
-                     popCounter++;
-                 }
-                 formattedOutput = formattedOutput.split("").reverse().join("");
-                 let commaLastIndex = formattedOutput.lastIndexOf(',');
-                 formattedOutput = formattedOutput.slice(0, commaLastIndex);
-                 formattedOutput += ' people';
-                 sPopulation.innerHTML = formattedOutput;
+                 addComma(currentPopulation, sPopulation, 'people');
              }
              counter++;
          }
@@ -89,4 +57,24 @@ export default function loadTable (planets) {
              }
              counter++;
          }
+    }
+
+    function addComma(string, iterable, suffix) {
+             let formattedOutput = '';
+             let indexCounter = 0;
+             string = string.split("").reverse().join("");
+             for (let number of string) {
+                 if (indexCounter % 3 === 0) {
+                     formattedOutput += ',';
+                     formattedOutput += number;
+                 } else {
+                     formattedOutput += number;
+                 }
+                 indexCounter++;
+             }
+             formattedOutput = formattedOutput.split("").reverse().join("");
+             let commaLastIndex = formattedOutput.lastIndexOf(',');
+             formattedOutput = formattedOutput.slice(0, commaLastIndex);
+             formattedOutput += ' ' + suffix;
+             iterable.innerHTML = formattedOutput;
     }

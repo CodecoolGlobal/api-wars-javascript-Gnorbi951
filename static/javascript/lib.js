@@ -1,3 +1,5 @@
+import {fillModal, removeRows} from "./modal.js";
+
 export function get(url){
         return new Promise(function(resolve, reject){
             let xhttp = new XMLHttpRequest();
@@ -75,7 +77,11 @@ export function loadTable (planets) {
                  sResident.innerHTML = `<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">${residentNumber.length} resident(s)</button>`;
              }
              sResident.addEventListener('click', function () {
-
+                 removeRows();
+                 for (let url of residentNumber) {
+                     let characterInfo = get(url);
+                     characterInfo.then(fillModal);
+                 }
              });
              counter++;
          }

@@ -1,3 +1,19 @@
 #header {
     padding: 30px;
 }
+.btn{
+    border:none;
+    background-color: #8AB0AB;
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    font-size: 20px;
+    margin: 10px;
+
+}
+
+.btn:hover{
+    background-color: #cccccc;
+    color:#3E505B;
+    transition: 1s;
+}

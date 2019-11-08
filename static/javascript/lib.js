@@ -1,4 +1,23 @@
-export default function loadTable (planets) {
+export function get(url){
+        return new Promise(function(resolve, reject){
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GET", url, true);
+            xhttp.onload = function () {
+                if (xhttp.status === 200){
+                    resolve(JSON.parse(xhttp.response));
+                } else {
+                    reject(xhttp.statusText);
+                }
+            };
+            xhttp.onerror = function () {
+                reject(xhttp.statusText);
+            };
+            xhttp.send();
+        });
+    }
+
+
+export function loadTable (planets) {
          const planetSelector = document.querySelectorAll('#planet');
          const diameterSelector = document.querySelectorAll('#diameter');
          const climateSelector = document.querySelectorAll('#climate');
@@ -14,7 +33,7 @@ export default function loadTable (planets) {
          counter = 0;
          for (let sDiameter of diameterSelector) {
                  let currentDiameter = planets.results[counter].diameter;
-                 addComma(currentDiameter, sDiameter, 'km');
+                 addCommaAndSuffix(currentDiameter, sDiameter, 'km');
              counter++;
          }
          counter = 0;
@@ -43,7 +62,7 @@ export default function loadTable (planets) {
              if (currentPopulation === 'unknown') {
                  sPopulation.innerHTML = currentPopulation;
              } else {
-                 addComma(currentPopulation, sPopulation, 'people');
+                 addCommaAndSuffix(currentPopulation, sPopulation, 'people');
              }
              counter++;
          }
@@ -53,13 +72,16 @@ export default function loadTable (planets) {
              if (residentNumber.length === 0) {
                  sResident.innerHTML = 'No known residents';
              } else {
-                 sResident.innerHTML = `<button>${residentNumber.length} resident(s)</button>`;
+                 sResident.innerHTML = `<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">${residentNumber.length} resident(s)</button>`;
              }
+             sResident.addEventListener('click', function () {
+
+             });
              counter++;
          }
     }
 
-    function addComma(string, iterable, suffix) {
+    function addCommaAndSuffix(string, iterable, suffix) {
              let formattedOutput = '';
              let indexCounter = 0;
              string = string.split("").reverse().join("");

@@ -13,7 +13,24 @@ export default function loadTable (planets) {
          }
          counter = 0;
          for (let sDiameter of diameterSelector) {
-             sDiameter.innerHTML = planets.results[counter].diameter + ' km';
+                 let formattedOutput = '';
+                 let indexCounter = 0;
+                 let currentDiameter = planets.results[counter].diameter;
+                 currentDiameter = currentDiameter.split("").reverse().join("");
+                 for (let number of currentDiameter) {
+                     if (indexCounter % 3 === 0) {
+                         formattedOutput += ',';
+                         formattedOutput += number;
+                     } else {
+                         formattedOutput += number;
+                     }
+                     indexCounter++;
+                 }
+                 formattedOutput = formattedOutput.split("").reverse().join("");
+                 let commaLastIndex = formattedOutput.lastIndexOf(',');
+                 formattedOutput = formattedOutput.slice(0, commaLastIndex);
+                 formattedOutput += ' km';
+                 sDiameter.innerHTML = formattedOutput;
              counter++;
          }
          counter = 0;
@@ -44,7 +61,7 @@ export default function loadTable (planets) {
              } else {
                  let formattedOutput = '';
                  let popCounter = 0;
-                 currentPopulation = currentPopulation.split("").reverse().join(""); // good at this point
+                 currentPopulation = currentPopulation.split("").reverse().join("");
                  for (let number of currentPopulation) {
                      if (popCounter % 3 === 0) {
                          formattedOutput += ',';

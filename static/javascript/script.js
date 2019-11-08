@@ -1,3 +1,6 @@
+import loadTable from './lib.js';
+
+
 window.onload = function() {
 
     function get(url){
@@ -18,14 +21,6 @@ window.onload = function() {
         });
     }
     let promise = get('https://swapi.co/api/planets');
-    promise.then(function (planets) {
-         let planetSelector =document.querySelectorAll('#planet');
-         let counter = 0;
-         for (let sPlanet of planetSelector){
-             sPlanet.innerHTML = planets.results[counter].name;
-             counter++;
-         }
-
-    });
+    promise.then(loadTable);
 
 };

@@ -14,7 +14,6 @@ export function fillModal(characterInfo) {
 
     //tableRow = document.createRange().createContextualFragment(tableRow);
     modalBody.appendChild(tableRow);
-    console.log(characterInfo);
 
 }
 

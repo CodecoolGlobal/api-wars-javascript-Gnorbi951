@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1 id="header">Star Wars Universe Planets</h1>
+    <h1 id="header"><b>Star Wars Universe Planets</b></h1>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -16,7 +16,7 @@
         <tbody>
             {% for _ in range(0,10) %}
                 <tr>
-                    <td>Sample_planet</td>
+                    <td id="planet">Sample_planet</td>
                     <td>sample km</td>
                     <td>sample climate</td>
                     <td>sample terrain</td>

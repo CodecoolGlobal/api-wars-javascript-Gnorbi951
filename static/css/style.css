@@ -17,3 +17,16 @@
     color:#3E505B;
     transition: 1s;
 }
+
+.header {
+    margin: 0px;
+    background-color: lightgrey;
+    border: 2px darkgrey;
+    padding: 10px;
+}
+.header a {
+    padding-right: 80px;
+}
+.header #status {
+    padding-left: 1000px;
+}

@@ -11,9 +11,10 @@ function main() {
         let currentUrl = 'https://swapi.co/api/planets';
         let promise = get(currentUrl);
         promise.then(loadTable);
+
+
         const nextButton = document.getElementById('next_btn');
         const previousButton = document.getElementById('prev_btn');
-
 
         let nextUrl = '';
         nextButton.addEventListener('click', function () {

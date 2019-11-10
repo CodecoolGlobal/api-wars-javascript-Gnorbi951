@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect
 import data_handler
 
 
 app = Flask(__name__)
+app.secret_key = 'b_5#y2L"F4Q8znxec]/'
 
 
 @app.route('/')
@@ -30,6 +31,19 @@ def registration():
 
     else:
         return render_template('registration.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        pw = request.form.get('password')
+        if data_handler.verify_login(username, pw):
+            session['username'] = username
+            session['password'] = pw
+            return redirect('/')
+    else:
+        return render_template('login.html')
 
 
 if __name__ == '__main__':

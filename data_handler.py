@@ -23,6 +23,24 @@ def list_users(cursor):
     return every_user
 
 
+@connection.connection_handler
+def get_username_and_pw(cursor, user_name):
+    cursor.execute("""
+                   SELECT username, password
+                   FROM users
+                   WHERE username = %(user_name)s
+                   """,
+                   {'user_name': user_name})
+    user_info = cursor.fetchall()
+    return user_info
+
+
+def verify_login(user_name, plain_password):
+    database_info = get_username_and_pw(user_name)
+    verification = verify_password(plain_password, database_info[0].get('password'))
+    return verification
+
+
 def hash_password(text_password):
     hashed_bytes = bcrypt.hashpw(text_password.encode('utf-8'), bcrypt.gensalt())
     return hashed_bytes.decode('utf-8')

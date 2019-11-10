@@ -2,9 +2,6 @@ import {loadTable, get} from './lib.js';
 
 function main() {
 
-    function nextPage() {
-
-    }
 
     window.onload = function() {
 

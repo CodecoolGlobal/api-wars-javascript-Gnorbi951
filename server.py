@@ -37,12 +37,17 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         pw = request.form.get('password')
-        if data_handler.verify_login(username, pw):
-            session['username'] = username
-            session['password'] = pw
-            return redirect('/')
+        try:
+            if data_handler.verify_login(username, pw):
+                session['username'] = username
+                session['password'] = pw
+                return redirect('/')
+        except IndexError:
+            # An IndexError is returned when the user name doesn't exist
+            message = "User name or password is incorrect"
+            return render_template('login.html', message=message)
         else:
-            message = 'User name or password is incorrect'
+            message = "User name or password is incorrect"
             return render_template('login.html', message=message)
     else:
         return render_template('login.html')

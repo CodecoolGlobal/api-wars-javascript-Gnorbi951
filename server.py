@@ -17,7 +17,6 @@ def registration():
         user_name = request.form.get('user_name')
         not_hashed_pw = request.form.get('pw')
         name_status = data_handler.check_if_user_name_exists(user_name)
-        print(name_status)
         if name_status:
             message = 'Name already taken'
             return render_template('registration.html', message=message)
@@ -42,8 +41,17 @@ def login():
             session['username'] = username
             session['password'] = pw
             return redirect('/')
+        else:
+            message = 'User name or password is incorrect'
+            return render_template('login.html', message=message)
     else:
         return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect('/')
 
 
 if __name__ == '__main__':

@@ -31,6 +31,14 @@
     padding-left: 1000px;
 }
 
+.content-wrapper{
+    width: 70%;
+    background-color: beige;
+    padding: 30px;
+    margin: 100px auto;
+
+}
+
 .login,.login_form{
 
     overflow: hidden;

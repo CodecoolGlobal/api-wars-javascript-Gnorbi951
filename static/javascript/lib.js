@@ -86,28 +86,6 @@ export function loadTable (planets) {
              });
              counter++;
          }
-
-         /*
-         let nextUrl = planets.next;
-         let previousUrl = planets.previous;
-         let nextButton = document.querySelector('#next_btn');
-         nextButton.addEventListener('click', function () {
-             let nextPage = get(nextUrl);
-             console.log('load next');
-             nextPage.then(loadTable);
-         });
-        let previousButton = document.querySelector('#prev_btn');
-        previousButton.addEventListener('click', function () {
-            if (previousUrl === null) {
-                console.log('This is the first page')
-            } else {
-                let previousPage = get(previousUrl);
-                console.log('load prev');
-                previousPage.then(loadTable);
-            }
-        })
-
-          */
     }
 
     function addCommaAndSuffix(string, iterable, suffix) {
